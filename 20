@@ -1,0 +1,44 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+	"unicode"
+)
+
+func main() {
+	var input string
+	fmt.Print("Digite uma string: ")
+	fmt.Scanln(&input)
+
+	isCamelCase := checkCamelCase(input)
+	wordCount := countWords(input)
+
+	fmt.Println("Está em camelCase:", isCamelCase)
+	fmt.Println("Quantidade de palavras:", wordCount)
+}
+
+func checkCamelCase(str string) bool {
+	// Verifica se a primeira letra é maiúscula
+	if len(str) > 0 && unicode.IsLower(rune(str[0])) {
+		return false
+	}
+
+	// Verifica se as outras letras são minúsculas
+	for _, char := range str[1:] {
+		if unicode.IsUpper(char) {
+			return false
+		}
+	}
+
+	return true
+}
+
+func countWords(str string) int {
+	// Divide a string em palavras usando a função Fields da biblioteca strings
+	words := strings.FieldsFunc(str, func(r rune) bool {
+		return unicode.IsUpper(r)
+	})
+
+	return len(words)
+}
