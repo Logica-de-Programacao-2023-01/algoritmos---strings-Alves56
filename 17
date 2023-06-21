@@ -1,0 +1,33 @@
+package main
+
+import "fmt"
+
+func main() {
+	var input string
+	fmt.Print("Digite uma string: ")
+	fmt.Scanln(&input)
+
+	uniqueLetters := getUniqueLetters(input)
+
+	fmt.Println("Letras únicas:", uniqueLetters)
+}
+
+func getUniqueLetters(str string) string {
+	letterCount := make(map[rune]int)
+
+	// Conta a ocorrência de cada letra na string
+	for _, char := range str {
+		letterCount[char]++
+	}
+
+	unique := ""
+
+	// Verifica quais letras têm ocorrência igual a 1 e as concatena na string unique
+	for _, char := range str {
+		if letterCount[char] == 1 {
+			unique += string(char)
+		}
+	}
+
+	return unique
+}
