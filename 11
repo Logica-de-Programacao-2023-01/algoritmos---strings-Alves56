@@ -1,0 +1,26 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	var input string
+	fmt.Print("Digite uma string: ")
+	fmt.Scanln(&input)
+
+	result := removeVowels(input)
+
+	fmt.Println("Resultado:", result)
+}
+
+func removeVowels(str string) string {
+	vowels := []string{"a", "e", "i", "o", "u", "A", "E", "I", "O", "U"}
+
+	for _, vowel := range vowels {
+		str = strings.ReplaceAll(str, vowel, "")
+	}
+
+	return str
+}
